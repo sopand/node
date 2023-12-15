@@ -1,2 +1,2 @@
 ## node-start1
-백엔드 공부 시
+Node.js 백엔드 공부 시작
