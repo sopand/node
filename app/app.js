@@ -56,18 +56,3 @@ module.exports=app;
 //     res.json({'userid':data.id});
 // })
 
-// app.get('/sound/:name', (req, res) => {
-//     const { name  }=req.params;
-//     switch(name){
-//         case "dog" :  res.json({'sound':'멍멍'}); break;
-//         case "cat" :   res.json({'sound':'야옹'}); break;
-//         default : break;
-//     }
-// })
-// app.get('/dog', (req, res) => {
-//     res.json({'sound':'멍멍'});
-// })
-// app.get('/cat', (req, res) => {
-//     res.json({'sound':'야옹'});
-// })
-
