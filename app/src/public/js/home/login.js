@@ -11,8 +11,7 @@ const id = document.querySelector("#id"),
             id: id.value,
             psword : psword.value,
         };
-
-
+        
         fetch("/login",{
             method:"POST",
             headers:{
