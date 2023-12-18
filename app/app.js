@@ -18,7 +18,6 @@
 const dotenv = require('dotenv').config(); // 환경 변수 설정을 위한것
 const bodyParser=require('body-parser'); // req.body의 데이터를 parsing해주는 모듈
 const express = require('express');
-const morgan = require('morgan');
 
 const app = express();
 // CORS설정 모두 허용
@@ -28,7 +27,8 @@ app.use(cors())
 // 라우팅
 const home=require("./src/routes/home");
 
-const accessLogStream=require("./src/config/log.js");
+const logger=require("./src/config/logger.js");
+logger.error("하이");
 
 // 앱 세팅
 app.set("views","./src/views");
@@ -36,8 +36,6 @@ app.set("view engine","ejs");
 app.use(express.static(`${__dirname}/src/public`));
 app.use(bodyParser.json()); //req.body 데이터를 json방식으로 받아옴
 app.use(bodyParser.urlencoded({extended:true})) // URL을 통해 전달되는 데이터에 한글,공백 등과 같은 문자가 포함될 경우 제대로 인식되지 않는 문제 해결
-app.use(morgan("dev"));
-app.use(morgan("common",{ stream: accessLogStream}));
 app.use("/",home); // use ->미들 웨어를 등록해주는 메서드
 
 module.exports=app;
