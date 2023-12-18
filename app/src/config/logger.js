@@ -1,30 +1,46 @@
-const {createLogger , transports,format} = require("winston");
-const {combine,timestamp,json,simple,colorize,printf,label} = format;
+const { createLogger, transports, format } = require("winston");
+const { combine, timestamp, simple, colorize, printf, label } = format;
 
-
-const printFormat= printf(({timestamp,label,level , message})=>{
-    return `${timestamp} [${label}] ${level} : ${message}`
+const printFormat = printf(({ timestamp, label, level, message }) => {
+  return `${timestamp} [${label}] ${level} : ${message}`;
 });
-const printLogFormat=combine(
+const printLogFormat = {
+  file: combine(
     // winston.format.colorize(),
     label({
-        label: "백엔드 맛보기",
+      label: "백엔드 맛보기",
     }),
-    colorize(),
     timestamp({
-        format:"YYYY-MM-DD HH:mm:dd",
+      format: "YYYY-MM-DD HH:mm:dd",
     }),
-    printFormat,
-   
-);
+    printFormat
+  ),
+  console:combine(
+    colorize(),
+    simple()
 
-const logger=createLogger({
-    transports:[
-        new transports.Console({
-            level:"info",
-            format:printLogFormat,
-        })
-    ]
+  )
+
+};
+
+const opts = {
+  file: new transports.File({
+    filename: "access.log",
+    dirname: "./logs",
+    level: "info",
+    format: printLogFormat.file,
+  }),
+  console: new transports.Console({
+    level: "info",
+    format: printLogFormat.console,
+  }),
+};
+
+const logger = createLogger({
+  transports: [opts.file],
 });
 
-module.exports=logger;
+if (process.env.NODE_ENV !== "production") {
+  logger.add(opts.console);
+}
+module.exports = logger;

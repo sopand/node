@@ -27,9 +27,6 @@ app.use(cors())
 // 라우팅
 const home=require("./src/routes/home");
 
-const logger=require("./src/config/logger.js");
-logger.error("하이");
-
 // 앱 세팅
 app.set("views","./src/views");
 app.set("view engine","ejs");
