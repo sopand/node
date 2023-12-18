@@ -15,6 +15,7 @@
 
 
 // 라우팅
+const dotenv = require("dotenv").config(); // 환경 변수 설정을 위한것
 const home=require("./src/routes/home");
 //모듈
 const bodyParser=require("body-parser"); // req.body의 데이터를 parsing해주는 모듈
