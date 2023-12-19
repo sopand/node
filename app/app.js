@@ -15,11 +15,12 @@
 
 
 //모듈
+const dotenv = require('dotenv').config(); // 환경 변수 설정을 위한것
 const express = require('express');
 const bodyParser=require('body-parser'); // req.body의 데이터를 parsing해주는 모듈
 // const morgan = require("morgan");
 // const logger= require("./src/config/logger");
-const dotenv = require('dotenv').config(); // 환경 변수 설정을 위한것
+
 
 
 
